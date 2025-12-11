@@ -63,8 +63,15 @@ while (humanScore < 5 && compScore<5){
     }
 
     console.log(`User score = ${humanScore} and Computer score = ${compScore}`)
-
+    if(humanScore===5){
+        console.log("User won the game");
+    }
+    if(compScore===5){
+        console.log("Computer won the game");
+    }
 }
+
+
 
 
 
