@@ -1,3 +1,13 @@
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const score = document.getElementById('score');
+const result = document.getElementById('result');
+const won = document.getElementById('won');
+// rock.addEventListener('click',GetHumanInput(rock));
+// paper.addEventListener('click',GetHumanInput(paper));
+// scissors.addEventListener('click',GetHumanInput(scissors));
+
 function GetRandomChoice() {
     return Math.random()
 }
@@ -12,64 +22,78 @@ function GetCompInput(){
     }
 }
 
-function GetHumanInput(){
-    let inp = prompt("Enter rock, scissors or for paper: ");
-    return inp
-}
+// function GetHumanInput(){
+    rock.addEventListener('click',()=>{
+        playMatch("rock")
+    })
+    paper.addEventListener('click',()=>{
+        playMatch("paper")
+    })
+    scissors.addEventListener('click',()=>{
+        playMatch("scissors")
+    })
+// }
 
 
 
-function playMatch(userInput,Choice){
-
-    console.log(`User = ${userInput} vs Computer = ${Choice} `)
+function playMatch(userInput){
+    let Choice=GetCompInput()
+    result.innerText=`User: ${userInput} VS Computer: ${Choice} `
     if(userInput === Choice){
-        console.log("tie");
+       won.innerText="tie"
     }else if((userInput === "rock" ) && (Choice ==="scissors")){
-        console.log("User won");
-        return 1;
+        won.innerText="User won";
+        humanScore++;
+      
     }else if((userInput === "rock") && (Choice ==="paper")){
-        console.log("Computer won");
-        return 0
+        won.innerText="Computer won"
+        compScore++;
+
     }else if((userInput === "scissors") && (Choice ==="rock")){
-        console.log("Computer won");
-        return 0
+       won.innerText="Computer won"
+            compScore++;
+       
     }else if((userInput === "scissors") && (Choice ==="paper")){
-        console.log("User won");
-        return 1
+            won.innerText="User won";
+        humanScore++;
+   
     }else if((userInput === "paper") && (Choice ==="rock")){
-        console.log("User won");
-        return 0
+            won.innerText="User won";
+        humanScore++;
+       
     }else if((userInput === "paper") && (Choice ==="scissors")){
-        console.log("Computer won");
-        return 1
+        won.innerText="Computer won"
+            compScore++;
     }
+    score.innerText = `${humanScore}-${compScore}`
 }
 
-let Choice;
-let userInput;
+// let Choice;
+// let userInput;
 
 let humanScore=0;
 let compScore=0;
 let currentWin=0;
 
-while (humanScore < 5 && compScore<5){
-    Choice = GetCompInput();
-    userInput = GetHumanInput();   
-    currentWin =  playMatch(userInput,Choice)
-    if(currentWin ===1){
-        humanScore++;
-    }else{
-        compScore++;
-    }
+// while (humanScore < 5 && compScore<5){
+//     Choice = GetCompInput();
+//      console.log(GetHumanInput());  
+//     userInput = GetHumanInput();   
+//     currentWin =  playMatch(userInput,Choice)
+//     if(currentWin ===1){
+//         humanScore++;
+//     }else{
+//         compScore++;
+//     }
 
-    console.log(`User score = ${humanScore} and Computer score = ${compScore}`)
-    if(humanScore===5){
-        console.log("User won the game");
-    }
-    if(compScore===5){
-        console.log("Computer won the game");
-    }
-}
+//     console.log(`User score = ${humanScore} and Computer score = ${compScore}`)
+//     if(humanScore===5){
+//         console.log("User won the game");
+//     }
+//     if(compScore===5){
+//         console.log("Computer won the game");
+//     }
+// }
 
 
 
